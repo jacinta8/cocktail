@@ -1,42 +1,42 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect, useContext, useCallback } from "react"
 
 const AppContext = React.createContext({
-  loading: false,
+  loading: true,
   items: [],
   error: false,
 })
 
 const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s="
 const AppProvider = (props) => {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [searchTerm, setSearchTerm] = useState("a")
   const [items, setItems] = useState([])
 
-  const fetchedData = async () => {
+  const fetchedData = useCallback(async () => {
     try {
       setLoading(true)
-      const response = await fetch(url)
+      const response = await fetch(`${url}${searchTerm}`)
       if (!response.ok) {
         throw new Error("Failed to fetch Cocktail List!")
       }
       const data = await response.json()
       setItems(data.drinks)
+      // console.log("data", data)
     } catch (err) {
-      setError(err.message)
+      console.log(err.message)
     }
     setLoading(false)
-  }
-
+  }, [searchTerm])
   useEffect(() => {
     fetchedData()
-  }, [])
+  }, [searchTerm, fetchedData])
 
   return (
     <AppContext.Provider
       value={{
         loading,
-        error,
         items,
+        setSearchTerm,
       }}
     >
       {props.children}

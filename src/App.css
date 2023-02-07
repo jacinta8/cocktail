@@ -97,6 +97,14 @@ form {
   text-align: center;
   width: 70vw;
 }
+.section-title {
+  font-size: 2rem;
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+  text-align: center;
+  margin-bottom: 3.5rem;
+  margin-top: 1rem;
+}
 
 .cocktail-container ul {
   display: grid;
@@ -149,4 +157,85 @@ p {
 
 .error-container {
   text-align: center;
+}
+
+/********Loading*********/
+.loading {
+  margin: 88px auto;
+  margin-top: 20rem;
+  display: flex;
+  gap: 15px;
+  width: 200px;
+}
+
+.rectangle {
+  background-color: transparent;
+  height: 4em;
+  width: 50px;
+  animation: loading 0.5s infinite cubic-bezier(0.62, 0.04, 0.42, 0.84)
+    alternate;
+  font-size: 1.5rem;
+}
+
+.one {
+  animation-delay: 0s;
+}
+.two {
+  animation-delay: 0.1s;
+}
+.three {
+  animation-delay: 0.2s;
+}
+
+@keyframes loading {
+  0% {
+    box-shadow: 0 0 var(--primaryColor);
+  }
+  100% {
+    box-shadow: 0 -4em var(--primaryColor);
+    height: 4em;
+  }
+}
+/********CocktailSinglePage*********/
+.single-cocktail {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.single-cocktail h2 {
+  font-size: 2rem;
+  text-transform: capitalize;
+
+  letter-spacing: var(--mainSpacing);
+  text-align: center;
+  margin-bottom: 3.5rem;
+  margin-top: 1rem;
+}
+.drink {
+  display: grid;
+  grid-template-columns: 2.5fr 3fr;
+  gap: 50px;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+.drink img {
+  border-radius: var(--mainBorderRadius);
+}
+.info-container {
+  text-align: left;
+  /* line-height: 300%; */
+}
+
+.info-container p {
+  font-weight: 700;
+  text-transform: capitalize;
+  line-height: 280%;
+}
+.info-container span {
+  background: var(--primaryLightColor);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--mainBorderRadius);
+  color: var(--primaryColor);
+  margin-right: 15px;
 }
